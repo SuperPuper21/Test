@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "934ad068-4f96-41b4-a626-510353200d30",
+		"name": "/api/v1/user/profile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer profile",
+			"item": [
+				{
+					"name": "/api/v1/user/profile(200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//1. Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//2. Correct response format JSON\r",
+									"pm.test(\"Correct response format JSON\", function(){\r",
+									"    pm.response.to.have.jsonBody()\r",
+									"});\r",
+									"\r",
+									"//3. Fields in the responce\r",
+									"pm.test(\"Fields in the responce\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonData).to.have.property(\"id\")\r",
+									"    pm.expect(jsonData).to.have.property(\"username\")\r",
+									"    pm.expect(jsonData).to.have.property(\"roles\")\r",
+									"    pm.expect(jsonData).to.have.property(\"email\")\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\")\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\")\r",
+									"    pm.expect(jsonData).to.have.property(\"middleName\")\r",
+									"    pm.expect(jsonData).to.have.property(\"userCompanies\")\r",
+									"});\r",
+									"\r",
+									"//4. Status message is ok\r",
+									"pm.test(\"Status message is ok\", function(){\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"//5. The response has specific header with a specific value\r",
+									"pm.test(\"The response has specific header with a specific value\", function(){\r",
+									"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"type": "text",
+								"value": "{{token_cust}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/user/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/user/profile(401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//1. Status code is 401\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"//2. Correct response format JSON\r",
+									"pm.test(\"Correct response format JSON\", function(){\r",
+									"    pm.response.to.have.jsonBody()\r",
+									"});\r",
+									"\r",
+									"//3. Fields in the responce\r",
+									"pm.test(\"Fields in the responce\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"message\")\r",
+									"});\r",
+									"\r",
+									"//4. Status message is Unauthorized\r",
+									"pm.test(\"Status message is Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(\"Unauthorized\");\r",
+									"});\r",
+									"\r",
+									"//5. Username could not be found\r",
+									"pm.test(\"Username could not be found\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"Username could not be found.\")\r",
+									"});\r",
+									"\r",
+									"//6. The response has specific header with a specific value\r",
+									"pm.test(\"The response has specific header with a specific value\", function(){\r",
+									"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"type": "text",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/user/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transport company profile",
+			"item": [
+				{
+					"name": "/api/v1/user/profile(200)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//1. Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//2. Correct response format JSON\r",
+									"pm.test(\"Correct response format JSON\", function(){\r",
+									"    pm.response.to.have.jsonBody()\r",
+									"});\r",
+									"\r",
+									"//3. Fields in the responce\r",
+									"pm.test(\"Fields in the responce\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"    pm.expect(jsonData).to.have.property(\"username\");\r",
+									"    pm.expect(jsonData).to.have.property(\"roles\");\r",
+									"    pm.expect(jsonData).to.have.property(\"email\");\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"middleName\");\r",
+									"    pm.expect(jsonData).to.have.property(\"userCompanies\")\r",
+									"});\r",
+									"\r",
+									"//4. Status message is OK\r",
+									"pm.test(\"Status message is OK\", function(){\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"//5. The response has specific header with a specific value\r",
+									"pm.test(\"The response has specific header with a specific value\", function(){\r",
+									"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+									"})\r",
+									"\r",
+									"//6. Schema is valid\r",
+									"const schema = {\r",
+									"   \"id\": 0,\r",
+									"  \"username\": \"string\",\r",
+									"  \"roles\": [\r",
+									"    \"string\"\r",
+									"  ],\r",
+									"  \"email\": \"string\",\r",
+									"  \"firstName\": \"string\",\r",
+									"  \"lastName\": \"string\",\r",
+									"  \"middleName\": \"string\",\r",
+									"  \"userCompanies\": [\r",
+									"    {\r",
+									"      \"id\": 0,\r",
+									"      \"company\": {\r",
+									"        \"id\": 0,\r",
+									"        \"name\": \"string\",\r",
+									"        \"inn\": \"string\",\r",
+									"        \"country\": {\r",
+									"          \"id\": 0,\r",
+									"          \"name\": \"string\"\r",
+									"        },\r",
+									"        \"type\": \"string\"\r",
+									"      },\r",
+									"      \"roles\": [\r",
+									"        \"string\"\r",
+									"      ],\r",
+									"      \"isInvitedUser\": true\r",
+									"    }\r",
+									"  ]\r",
+									"};\r",
+									"pm.test('Schema is valid', function() {\r",
+									"  pm.response.to.have.jsonSchema(schema);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{token_com}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/user/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/user/profile(401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//1. Status code is 401\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"//2. Correct response format JSON\r",
+									"pm.test(\"Correct response format JSON\", function(){\r",
+									"    pm.response.to.have.jsonBody()\r",
+									"});\r",
+									"\r",
+									"//3. Fields in the responce\r",
+									"pm.test(\"Fields in the responce\", function() {\r",
+									"    const jsonData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonData).to.have.property(\"message\")\r",
+									"});\r",
+									"\r",
+									"//4. Status message is Unauthorized\r",
+									"pm.test(\"Status message is Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(\"Unauthorized\");\r",
+									"});\r",
+									"\r",
+									"//5. Username could not be found\r",
+									"pm.test(\"Username could not be found\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.message).to.eql(\"Username could not be found.\")\r",
+									"});\r",
+									"\r",
+									"//6. The response has specific header with a specific value\r",
+									"pm.test(\"The response has specific header with a specific value\", function(){\r",
+									"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"type": "text",
+								"value": ""
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v1/user/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "ed637a44-b634-451c-9ad6-47fd6bd91035",
+		"name": "/api/v1/company/{id}/workspace/items",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "лист (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1. Status code is 404\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"//3. Status message is Not Found\r",
+							"pm.test(\"Status message is Not Found\", function(){\r",
+							"    pm.response.to.have.status(\"Not Found\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token_com}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/company/0/workspace/items?limit=100&offset=0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"company",
+						"0",
+						"workspace",
+						"items"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "100"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "id",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "лист (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1. Status code is 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//2. Correct response format JSON\r",
+							"pm.test(\"Correct response format JSON\", function(){\r",
+							"    pm.response.to.have.jsonBody()\r",
+							"});\r",
+							"\r",
+							"//3. Status message is OK\r",
+							"pm.test(\"Status message is OK\", function(){\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//4. The response has specific header with a specific value\r",
+							"pm.test(\"The response has specific header with a specific value\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{token_cust}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/company/11/workspace/items?limit=100&offset=0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"company",
+						"11",
+						"workspace",
+						"items"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "100"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "id",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "лист (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1. Status code is 400\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"//2. Correct response format JSON\r",
+							"pm.test(\"Correct response format JSON\", function(){\r",
+							"    pm.response.to.have.jsonBody()\r",
+							"});\r",
+							"\r",
+							"//3. Status message is Bad Request\r",
+							"pm.test(\"Status message is Bad Request\", function(){\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							"//4. Fields in the responce\r",
+							"pm.test(\"Fields in the responce\", function() {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property(\"code\")\r",
+							"    pm.expect(jsonData).to.have.property(\"message\")\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//4. The response has specific header with a specific value\r",
+							"pm.test(\"The response has specific header with a specific value\", function(){\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{token_com}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/company/2/workspace/items?limit=&offset=&id=",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"company",
+						"2",
+						"workspace",
+						"items"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": ""
+						},
+						{
+							"key": "offset",
+							"value": ""
+						},
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
